@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy New Year</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #ff9966, #ff5e62);
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 3rem;
+        }
+        .input-section {
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff5e62;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff9966;
+        }
+        .message {
+            margin-top: 30px;
+            font-size: 1.5rem;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border-radius: 50%;
+            animation: firework 1.5s ease-out infinite;
+        }
+        @keyframes firework {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>🎉 Happy New Year! 🎉</h1>
+    <div class="input-section">
+        <input type="text" id="nameInput" placeholder="Enter your name">
+        <button onclick="wishUser()">Wish Me</button>
+        <br>
+        <br>
+        <h6> Devloped by Souvikroy-web</h6>
+    </div>
+    <div class="message" id="message"></div>
+
+    <script>
+        function wishUser() {
+            const name = document.getElementById('nameInput').value.trim();
+            const messageDiv = document.getElementById('message');
+
+            if (name) {
+                messageDiv.innerHTML = `🎉 Happy New Year, <strong>${name}</strong>! 🎆`;
+            } else {
+                messageDiv.innerHTML = '🎉 Happy New Year to Everyone! 🎆';
+            }
+            createFireworks();
+        }
+
+        function createFireworks() {
+            for (let i = 0; i < 10; i++) {
+                const firework = document.createElement('div');
+                firework.className = 'firework';
+                firework.style.left = Math.random() * window.innerWidth + 'px';
+                firework.style.top = Math.random() * window.innerHeight + 'px';
+                document.body.appendChild(firework);
+                setTimeout(() => firework.remove(), 1500);
+            }
+        }
+    </script>
+</body>
+</html>
